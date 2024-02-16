@@ -21,7 +21,6 @@ const Navbar = () => {
             >
               Orders
             </Link>
-
             <span className="w-px hidden sm:flex h-5 bg-amber-500" />
             <Cart />
           </div>
