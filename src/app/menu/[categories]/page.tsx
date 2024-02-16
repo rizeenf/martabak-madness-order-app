@@ -11,7 +11,7 @@ type ParamsProps = {
 };
 const fetchData = async (categories: string) => {
   const res = await fetch(
-    `http://localhost:3000/api/products?category=${categories}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/products?category=${categories}`,
     {
       cache: "no-store",
     }
