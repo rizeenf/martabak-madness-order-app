@@ -1,36 +1,37 @@
-"use client";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Button } from "@/components/ui/button";
-import {
-  MARTABAK_KERING,
-  MARTABAK_MANIS,
-  MARTABAK_TELOR,
-  Products,
-} from "@/config/data";
+import { Product } from "@/config/type";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import React from "react";
 
 type ParamsProps = {
   params: {
     categories: string;
   };
 };
+const fetchData = async (categories: string) => {
+  const res = await fetch(
+    `http://localhost:3000/api/products?category=${categories}`,
+    {
+      cache: "no-store",
+    }
+  );
 
-const Categories = ({ params }: ParamsProps) => {
+  if (!res.ok) {
+    throw new Error("Error while fetch menus.");
+  }
+
+  return res.json();
+};
+
+const Categories = async ({ params }: ParamsProps) => {
   const { categories } = params;
 
-  const data: Products =
-    categories == "martabak-manis"
-      ? MARTABAK_MANIS
-      : categories == "martabak-telor"
-      ? MARTABAK_TELOR
-      : MARTABAK_KERING;
+  const data: Product[] = await fetchData(categories);
 
   return (
     <MaxWidthWrapper className="flex flex-row flex-wrap gap-5">
-      {data.map((product) => (
+      {data?.map((product) => (
         <div key={product.id} className="flex flex-col gap-2 p-5 border">
           {product.img && (
             <Image
@@ -38,6 +39,7 @@ const Categories = ({ params }: ParamsProps) => {
               src={product.img}
               width={300}
               height={300}
+              className="aspect-square object-cover"
             />
           )}
           <div className="flex flexrow justify-between">

@@ -1,4 +1,4 @@
-type Product = {
+export type Product = {
   id: string;
   title: string;
   desc?: string;
@@ -227,38 +227,10 @@ export const singleProduct: Product = {
   ],
 };
 
-type Menu = {
+export type MenuType = {
   id: string;
   slug: string;
   title: string;
   desc?: string;
-  href: string;
   img?: string;
 }[];
-
-export const menu: Menu = [
-  {
-    id: "66813278-e384-432d-b284-1db7d7e283f4",
-    slug: "martabakmanis",
-    title: "Martabak Manis",
-    desc: "Nikmati Martabak Manis kami yang lezat, dengan lapisan tipis yang renyah dan penuh dengan berbagai pilihan topping manis seperti cokelat, keju, kacang, dan masih banyak lagi. Pesan sekarang dan rasakan kelezatannya!",
-    img: "/images/martabak1.jpeg",
-    href: "/menu/martabak-manis",
-  },
-  {
-    id: "4d2fd3ac-c02c-4133-84ca-fbb0df366b2c",
-    slug: "martabaktelor",
-    title: "Martabak Telor",
-    desc: "Sajian Martabak Telur kami adalah campuran sempurna dari telur, daging cincang, bawang, dan rempah-rempah yang disajikan dengan kulit tipis yang garing di luar dan lembut di dalam. Pesan sekarang dan nikmati sensasi gurihnya!",
-    img: "/images/martelor1.jpeg",
-    href: "/menu/martabak-telor",
-  },
-  {
-    id: "dd8f4968-0c8b-48fe-9922-5a81ca5c2c7a",
-    slug: "martabakkering",
-    title: "Martabak Kering",
-    desc: "Martabak Kering kami menghadirkan cita rasa khas Indonesia dengan adonan yang renyah dan isiannya yang lezat. Terdiri dari berbagai pilihan rasa tradisional seperti daging, keju, kacang, dan masih banyak lagi. Pesan sekarang dan rasakan kenikmatannya!",
-    img: "/images/markering1.jpeg",
-    href: "/menu/martabak-kering",
-  },
-];

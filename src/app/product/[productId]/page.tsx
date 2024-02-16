@@ -1,6 +1,6 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Button } from "@/components/ui/button";
-import { singleProduct } from "@/config/data";
+import { singleProduct } from "@/config/type";
 import Image from "next/image";
 import React from "react";
 type ParamsProps = {
