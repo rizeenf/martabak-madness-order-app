@@ -14,6 +14,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import ListItem from "./ListItem";
+import Cart from "./Cart";
 
 const components: {
   title: string;
@@ -48,8 +49,8 @@ const Navbar = () => {
   return (
     <div className="h-12 bg-amber-900 z-40 text-white">
       <MaxWidthWrapper className="h-12">
-        <header className="h-full flex flex-row items-center">
-          <div className="left ">
+        <header className="h-full flex flex-row items-center justify-between">
+          <div className="left">
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -158,7 +159,15 @@ const Navbar = () => {
               </NavigationMenuList>
             </NavigationMenu>
           </div>
-          <div className="right"></div>
+          <div className="right">
+            <Link
+              href="/orders"
+              className={cn(navigationMenuTriggerStyle(), "bg-amber-900")}
+            >
+              Orders
+            </Link>
+            <Cart />
+          </div>
         </header>
       </MaxWidthWrapper>
     </div>

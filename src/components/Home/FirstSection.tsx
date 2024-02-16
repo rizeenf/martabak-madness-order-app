@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const sections = [
   {
@@ -53,7 +54,9 @@ const FirstSection = () => {
         <h1 className="text-4xl sm:text-6xl text-green-600 font-semibold text-center">
           {sections[currentSlide].title}
         </h1>
-        <Button className="">Order Now</Button>
+        <Button>
+          <Link href={"/menu"}>Order Now</Link>
+        </Button>
       </div>
       <div className="right flex flex-1 justify-center items-center relative px-10 sm:px-16">
         <Image
