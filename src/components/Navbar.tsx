@@ -5,8 +5,13 @@ import Link from "next/link";
 import Cart from "./Cart";
 import LeftNavbar from "./LeftNavbar";
 import MaxWidthWrapper from "./MaxWidthWrapper";
+import { Button } from "./ui/button";
+import Image from "next/image";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
+  const { data, status } = useSession();
+
   return (
     <div className="h-12 bg-amber-900 z-40 text-white">
       <MaxWidthWrapper className="h-12">
@@ -21,7 +26,31 @@ const Navbar = () => {
             >
               Orders
             </Link>
-            <span className="w-px hidden sm:flex h-5 bg-amber-500" />
+            <span className="w-px hidden sm:flex h-5 bg-amber-700" />
+            {data?.user?.email ? (
+              <>
+                <Button
+                  className={cn(navigationMenuTriggerStyle(), "bg-amber-900 ")}
+                >
+                  Account
+                </Button>
+                <span className="w-px hidden sm:flex h-5 bg-amber-700" />
+                <Button
+                  onClick={() => signOut()}
+                  className={cn(navigationMenuTriggerStyle(), "bg-amber-900 ")}
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Button
+                onClick={() => signIn()}
+                className={cn(navigationMenuTriggerStyle(), "bg-amber-900 ")}
+              >
+                Login
+              </Button>
+            )}
+            <span className="w-px hidden sm:flex h-5 bg-amber-700" />
             <Cart />
           </div>
         </header>
