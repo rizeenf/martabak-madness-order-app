@@ -44,7 +44,7 @@ const Navbar = () => {
               </>
             ) : (
               <Button
-                onClick={() => signIn()}
+                onClick={() => signIn("google")}
                 className={cn(navigationMenuTriggerStyle(), "bg-amber-900 ")}
               >
                 Login

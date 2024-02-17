@@ -21,25 +21,45 @@ model Category {
 }
 
 model Product {
-  id           String   @id @default(cuid())
-  createdAt    DateTime @default(now())
+  id           String           @id @default(cuid())
+  createdAt    DateTime         @default(now())
   title        String
   desc         String
   img          String
   price        Decimal
-  isFeatured   Boolean  @default(false)
-  options      Json[]
-  category     Category @relation(fields: [categorySlug], references: [slug])
+  isFeatured   Boolean          @default(false)
+  options      ProductOptions[]
+  category     Category         @relation(fields: [categorySlug], references: [slug])
   categorySlug String
 }
 
+model ProductOptions {
+  type            String   @unique
+  additionalPrice Decimal
+  Product         Product? @relation(fields: [productId], references: [id])
+  productId       String?
+}
+
 model Order {
+  id        String         @id @default(cuid())
+  createdAt DateTime       @default(now())
+  price     Decimal
+  products  ProductOrder[]
+  status    String
+  intent_id String?        @unique
+  user      User           @relation(fields: [userEmail], references: [email])
+  userEmail String
+}
+
+model ProductOrder {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   price     Decimal
-  products  Json[]
-  status    String
-  intent_id String?  @unique
+  title     String
+  img       String
+  quantity  Int
+  Order     Order?   @relation(fields: [orderId], references: [id])
+  orderId   String?
 }
 
 model Account {
@@ -78,6 +98,7 @@ model User {
   isAdmin       Boolean   @default(false)
   accounts      Account[]
   sessions      Session[]
+  Order         Order[]
 }
 
 model VerificationToken {
