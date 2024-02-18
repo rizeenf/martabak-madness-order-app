@@ -1,21 +1,28 @@
 "use client";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import { useFetch } from "@/hooks/useFetch";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import React from "react";
 
 const Orders = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  const data = useFetch();
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["orders"],
+    queryFn: () =>
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/orders`).then((res) =>
+        res.json()
+      ),
+  });
 
-  console.log({ data });
+  if (isLoading || status === "loading") return <div>Loading...</div>;
 
   if (status === "unauthenticated") {
     router.push("/");
   }
+
+  console.log({ data });
 
   return (
     <MaxWidthWrapper>

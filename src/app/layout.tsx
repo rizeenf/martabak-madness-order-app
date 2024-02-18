@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import AuthProvider from "@/components/AuthProvider";
+import QueryProvider from "@/components/QueryProvider";
 
 const poppins = Poppins({
   weight: ["400", "700", "800"],
@@ -28,10 +29,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(poppins.className, "h-full antialiased font-sans")}>
         <AuthProvider>
-          <main className="flex flex-col min-h-screen relative">
-            <Navbar />
-            {children}
-          </main>
+          <QueryProvider>
+            <main className="flex flex-col min-h-screen relative">
+              <Navbar />
+              {children}
+            </main>
+          </QueryProvider>
         </AuthProvider>
       </body>
     </html>

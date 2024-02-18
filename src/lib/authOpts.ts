@@ -40,9 +40,9 @@ export const authOptions: NextAuthOptions = {
           email: token.email!,
         },
       });
-      if (token) {
-        token.isAdmin = userDB?.isAdmin!;
-      }
+
+      token.isAdmin = userDB?.isAdmin!;
+
       return token;
     },
   },
