@@ -1,12 +1,17 @@
 "use client";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import { useFetch } from "@/hooks/useFetch";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React from "react";
 
 const Orders = () => {
-  const { data, status } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
+
+  const data = useFetch();
+
+  console.log({ data });
 
   if (status === "unauthenticated") {
     router.push("/");
@@ -25,12 +30,26 @@ const Orders = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="border-b border-amber-100">
+          <tr className="border-b border-amber-100 bg-red-100">
             <td>gje89ajfh8fe9ah</td>
             <td>2201-20-21</td>
             <td>50000</td>
             <td>Martabak Manis Keju</td>
-            <td>Delivered</td>
+            <td>On Progress</td>
+          </tr>
+          <tr className="border-b border-amber-100 bg-red-100">
+            <td>gje89ajfh8fe9ah</td>
+            <td>2201-20-21</td>
+            <td>50000</td>
+            <td>Martabak Manis Keju</td>
+            <td>On Progress</td>
+          </tr>
+          <tr className="border-b border-amber-100 bg-red-100">
+            <td>gje89ajfh8fe9ah</td>
+            <td>2201-20-21</td>
+            <td>50000</td>
+            <td>Martabak Manis Keju</td>
+            <td>On Progress</td>
           </tr>
           <tr className="border-b border-amber-100">
             <td>gje89ajfh8fe9ah</td>

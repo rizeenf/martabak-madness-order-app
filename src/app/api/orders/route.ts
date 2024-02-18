@@ -9,7 +9,9 @@ export const GET = async (req: NextRequest) => {
     try {
       const orders = await prisma.order.findMany({
         where: {
-          userEmail: session.user.email!,
+          ...(session.user.isAdmin == false && {
+            userEmail: session.user.email!,
+          }),
         },
       });
 

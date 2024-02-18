@@ -5,6 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { cn } from "@/lib/utils";
 import { MenuType } from "@/config/type";
+import { useFetchServer } from "@/hooks/useFetchServer";
 
 const fetchData = async () => {
   const res = await fetch(
@@ -23,6 +24,7 @@ const fetchData = async () => {
 
 const Menu = async () => {
   const menu: MenuType = await fetchData();
+  // const menu: MenuType = await useFetchServer("categories");
 
   return (
     <MaxWidthWrapper className="min-h-screen h-full flex items-center justify-center">
