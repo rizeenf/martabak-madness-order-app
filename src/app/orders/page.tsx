@@ -16,11 +16,11 @@ const Orders = () => {
       ),
   });
 
-  if (isLoading || status === "loading") return <div>Loading...</div>;
-
   if (status === "unauthenticated") {
     router.push("/");
   }
+
+  if (isLoading || status === "loading") return <div>Loading...</div>;
 
   console.log({ data });
 
